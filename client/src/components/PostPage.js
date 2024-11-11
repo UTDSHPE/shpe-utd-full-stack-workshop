@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import { useParams } from 'react-router-dom'
 
@@ -21,7 +22,16 @@ const PostPage = () => {
 
   // useEffect hook used to execute code on render of the component
   // Will implement this in level-3
-  useEffect(() => {}, [])
+  useEffect(() => {
+    const fetchPost = async () => {
+      const res = await axios.get(`http://localhost:5000/api/posts/${params.id}`)
+      const postData = res.data
+
+      setPost(postData)
+    }
+
+    fetchPost();
+  }, [])
 
   return (
     <div>

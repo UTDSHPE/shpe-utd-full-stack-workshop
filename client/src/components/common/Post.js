@@ -22,7 +22,7 @@ const Post = (props) => {
       <div className='flex flex-row justify-between'>
 
         {/* Link to a page version of the post, page is empty for now */}
-        <Link to={`/post/${props.id}`}>View Full Post</Link>
+        <Link to={`/post/${props.id}`}>View More</Link>
 
         {/* button to increment the likes state */}
         <div className='flex flex-row gap-4'>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 // import other components to be rendered in the Home page
 import Post from './common/Post'
@@ -9,7 +10,7 @@ const Home = () => {
   // example posts to test state with, this will be replaced in time with a more dynamic solution
   const [posts, setPosts] = useState([
     {
-      id: '',
+      _id: '',
       title: '',
       description: '',
       likes: 0
@@ -18,7 +19,17 @@ const Home = () => {
 
   // useEffect hook used to execute code on render of the component
   // will implement this in level-3
-  useEffect(() => {}, [])
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get('http://localhost:5000/api/posts/')
+      console.log(res.data)
+      const postsData = res.data
+
+      setPosts(postsData)
+    }
+
+    fetchPosts();
+  }, [])
 
 
   // return for this function returns the JSX of the React component
@@ -35,7 +46,7 @@ const Home = () => {
 
             {/* map function iterates through all posts to render them on the feed */}
             {posts.map((post) => (
-              <Post id={post.id} title={post.title} description={post.description} likes={post.likes} comments={post.comments} />
+              <Post id={post._id} title={post.title} description={post.description} likes={post.likes} comments={post.comments} />
             ))}
           </div>
         </div>
