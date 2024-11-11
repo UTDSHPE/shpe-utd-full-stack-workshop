@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Post = (props) => {
 
   // state to track the amount of likes for this individual post
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState(props.likes);
 
   // function to handle incrementing likes
   const handleLike = () => {
