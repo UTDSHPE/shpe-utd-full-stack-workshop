@@ -150,6 +150,7 @@ const updateLikes = async (req, res) => {
     try {
         const { id } = req.params
         const { action } = req.body // Expecting action to be 'increment' or 'decrement'
+        console.log(action)
         
         // Check if the provided post ID is valid
         if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -170,6 +171,7 @@ const updateLikes = async (req, res) => {
                 likes: action === 'increment' ? 1 : -1 // Increment or decrement the likes
             } 
         }
+        console.log(update)
         
         // Update the post's likes count
         const updatedPost = await Post.findByIdAndUpdate(

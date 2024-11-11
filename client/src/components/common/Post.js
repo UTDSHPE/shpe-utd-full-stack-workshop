@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import axios from 'axios';
+
 const Post = (props) => {
 
   // state to track the amount of likes for this individual post
-  const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState(props.likes);
 
   // function to handle incrementing likes
-  const handleLike = () => {
+  const handleLike = async () => {
     setLikes(likes + 1)
+    await axios.patch(`http://localhost:5000/api/posts/${props.id}/likes`, { action: "increment"})
   }
 
   return (
